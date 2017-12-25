@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="sample.com.jobin.msi.omr.MainActivity">
+
+    <Button
+        android:id="@+id/btn_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/no_ques"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:text="View questions"
+        android:layout_alignLeft="@+id/no_ques"
+        android:layout_alignRight="@+id/no_ques"/>
+
+    <Button
+        android:id="@+id/no_ques"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set number of questions"
+        android:layout_centerInParent="true"
+        />
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_hide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:hint="enter number of questions"
+            android:id="@+id/ed_no" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/ed_no"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="64dp"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:text="Submit"
+            android:onClick="sentQuestions"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
