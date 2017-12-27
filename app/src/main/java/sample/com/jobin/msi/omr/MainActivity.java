@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
         pref = getApplicationContext().getSharedPreferences("Mypref",MODE_PRIVATE);
         editor = pref.edit();
         editor.apply();
-
     }
 
     public void sentQuestions(View view) {
