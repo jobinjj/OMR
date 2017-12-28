@@ -8,6 +8,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,25 +31,38 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     ImageLoader imageLoader = AppController.getInstance().getImageLoader();
     public static NetworkInfo networkInfo;
-    EditText editText;
-    String questions;
+    EditText ed_no,ed_pm,ed_nm;
+    String questions,positive_mark,negative_mark;
     RelativeLayout rl_hide;
     private SharedPreferences pref;
     Button no_ques,btn_view;
     private SharedPreferences.Editor editor;
     ConnectivityManager connectivityManager;
     public static ArrayList<Data> List = new ArrayList<>();
+
     public static String url = "http://techpayyans.000webhostapp.com/omr/question.php?";
-    public static String url2 = "http://techpayyans.000webhostapp.com/omr/viewquestions.php?";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-        editText = (EditText) findViewById(R.id.ed_no);
+
+
+        ed_no = (EditText) findViewById(R.id.ed_no);
+        ed_pm = (EditText) findViewById(R.id.ed_pm);
+        ed_nm = (EditText) findViewById(R.id.ed_nm);
         rl_hide = (RelativeLayout)findViewById(R.id.rl_hide);
         no_ques = (Button)findViewById(R.id.no_ques);
         btn_view = (Button)findViewById(R.id.btn_view);
+        btn_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,QuestionActivity.class);
+                startActivity(intent);
+            }
+        });
 
         no_ques.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,13 +85,20 @@ public class MainActivity extends AppCompatActivity {
 
     public void sentQuestions(View view) {
 
-        questions = editText.getText().toString();
+        questions = ed_no.getText().toString();
+        positive_mark = ed_pm.getText().toString();
+        negative_mark = ed_nm.getText().toString();
+        editor.putString("noq",questions);
+        editor.putString("pm",positive_mark);
+        editor.putString("nm",negative_mark);
+        editor.apply();
         no_ques.setVisibility(View.VISIBLE);
         btn_view.setVisibility(View.VISIBLE);
         btn_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewQuestions();
+                Intent intent = new Intent(MainActivity.this,QuestionActivity.class);
+                startActivity(intent);
             }
         });
         rl_hide.setVisibility(View.GONE);
@@ -122,39 +143,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void viewQuestions() {
 
-            if (networkInfo == null) {
-                Toast.makeText(getApplicationContext(), "no network connection", Toast.LENGTH_SHORT).show();
-            } else {
-
-                JsonArrayRequest request = new JsonArrayRequest(url2,
-                        new Response.Listener<JSONArray>() {
-                            @Override
-                            public void onResponse(JSONArray response) {
-
-                                for (int i = 0; i < response.length(); i++) {
-                                    try {
-                                        JSONObject obj = response.getJSONObject(i);
-                                        Toast.makeText(MainActivity.this, obj.getString("opt1"), Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(MainActivity.this,QuestionActivity.class);
-//                                        startActivity(intent);
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-
-                    }
-                });
-                AppController.getInstance().addToRequestQueue(request);
-
-            }
-        }
 
     public static class Data {
         public  String opt1,opt2,opt3,opt4;
@@ -197,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
             this.opt4 = opt4;
         }
     }
+
 
 
 }

@@ -30,20 +30,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <EditText
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:hint="enter number of questions"
             android:id="@+id/ed_no" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_below="@+id/ed_no"
+            android:hint="enter positive mark"
+            android:id="@+id/ed_pm" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_below="@+id/ed_pm"
+            android:hint="enter negative mark"
+            android:id="@+id/ed_nm" />
 
         <Button
             android:id="@+id/submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/ed_no"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="64dp"
+            android:layout_below="@+id/ed_nm"
             style="@style/Widget.AppCompat.Button.Colored"
             android:text="Submit"
             android:onClick="sentQuestions"/>

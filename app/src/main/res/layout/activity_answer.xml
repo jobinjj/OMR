@@ -20,7 +20,7 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select the questions"
+        android:text="Select the Answers"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_margin="10dp"/>
     <RelativeLayout
@@ -31,7 +31,7 @@
         android:layout_height="0.5dp"
         android:background="#5a000000"/>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
+        android:id="@+id/recycler2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/under_line">

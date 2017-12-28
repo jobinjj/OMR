@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="wrap_content">
     <RelativeLayout
         android:id="@+id/rl_1"
         android:layout_width="match_parent"
@@ -20,10 +20,12 @@
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"/>
             <RelativeLayout
+                android:id="@+id/img_opt1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/divider_inner1">
                 <TextView
+                    android:id="@+id/opt1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="A"
@@ -33,17 +35,19 @@
                     android:textColor="#2D9CDB"/>
                 <ImageView
                     android:layout_width="match_parent"
-                    android:id="@+id/opt1"
+
                     android:layout_centerVertical="true"
                     android:layout_height="match_parent"
                     android:src="@drawable/border"
                     android:layout_margin="20dp"/>
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/img_opt2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/divider_inner1">
                 <TextView
+                    android:id="@+id/opt2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="B"
@@ -52,7 +56,7 @@
                     android:layout_centerInParent="true"
                     android:textColor="#2D9CDB"/>
                 <ImageView
-                    android:id="@+id/opt2"
+
                     android:layout_width="match_parent"
                     android:layout_centerVertical="true"
                     android:layout_height="match_parent"
@@ -72,10 +76,12 @@
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"/>
             <RelativeLayout
+                android:id="@+id/img_opt3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/divider_inner2">
                 <TextView
+                    android:id="@+id/opt3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="C"
@@ -84,7 +90,7 @@
                     android:layout_centerInParent="true"
                     android:textColor="#2D9CDB"/>
                 <ImageView
-                    android:id="@+id/opt3"
+
                     android:layout_width="match_parent"
                     android:layout_centerVertical="true"
                     android:layout_height="match_parent"
@@ -92,10 +98,12 @@
                     android:src="@drawable/border"/>
             </RelativeLayout>
             <RelativeLayout
+                android:id="@+id/img_opt4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/divider_inner2">
                 <TextView
+                    android:id="@+id/opt4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="D"
@@ -104,7 +112,7 @@
                     android:layout_centerInParent="true"
                     android:textColor="#2D9CDB"/>
                 <ImageView
-                    android:id="@+id/opt4"
+
                     android:layout_width="match_parent"
                     android:layout_centerVertical="true"
                     android:layout_height="match_parent"

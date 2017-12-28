@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,81 +27,46 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionActivity extends AppCompatActivity {
-    public static NetworkInfo networkInfo;
-    ConnectivityManager connectivityManager;
-    MoviesAdapter adapter2;
-    private Button check;
-    public static ArrayList<QData> QList = new ArrayList<>();
-    private RecyclerView recyclerView;
-    public static String url2 = "http://techpayyans.000webhostapp.com/omr/viewquestions.php?";
+public class AnswerActivity extends AppCompatActivity {
+    public static String url2 = "https://techpayyans.000webhostapp.com/omr/viewanswers.php?";
     public static String url = "http://techpayyans.000webhostapp.com/omr/update.php?";
+    public static NetworkInfo networkInfo;
+    Button check;
+    ConnectivityManager connectivityManager;
+    public static ArrayList<AnswerData> AList = new ArrayList<>();
+    private RecyclerView recyclerView;
+    MoviesAdapter adapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_question);
+        setContentView(R.layout.activity_answer);
+
         check = findViewById(R.id.check);
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(QuestionActivity.this,AnswerActivity.class);
+                Intent intent = new Intent(AnswerActivity.this,FinalActivity.class);
                 startActivity(intent);
             }
         });
-        recyclerView = (RecyclerView)findViewById(R.id.recycler);
+        recyclerView = (RecyclerView)findViewById(R.id.recycler2);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
-        adapter2 = new MoviesAdapter(QList);
+        adapter2 = new MoviesAdapter(AList);
         recyclerView.setAdapter(adapter2);
         connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         networkInfo = connectivityManager.getActiveNetworkInfo();
         viewQuestions();
+//        Toast.makeText(getApplicationContext(), String.valueOf(AList.size()), Toast.LENGTH_SHORT).show();
+
     }
-    public void viewQuestions() {
-
-        if (networkInfo == null) {
-            Toast.makeText(getApplicationContext(), "no network connection", Toast.LENGTH_SHORT).show();
-        } else {
-
-            JsonArrayRequest request = new JsonArrayRequest(url2,
-                    new Response.Listener<JSONArray>() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-                            QList.clear();
-                            for (int i = 0; i < response.length(); i++) {
-                                try {
-                                    JSONObject obj = response.getJSONObject(i);
-                                    QData QData = new QData();
-                                    QData.setOpt1(obj.getString("opt1"));
-                                    QData.setOpt2(obj.getString("opt2"));
-                                    QData.setOpt3(obj.getString("opt3"));
-                                    QData.setOpt4(obj.getString("opt4"));
-                                    QList.add(QData);
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                adapter2.notifyDataSetChanged();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                }
-            });
-            AppController.getInstance().addToRequestQueue(request);
-
-        }
-    }
-
     public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder> {
 
-        private List<QData> moviesList;
+        private java.util.List<AnswerData> moviesList;
 
-        public MoviesAdapter(List<QData> moviesList) {
+        public MoviesAdapter(List<AnswerData> moviesList) {
             this.moviesList = moviesList;
         }
 
@@ -117,7 +81,7 @@ public class QuestionActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(MoviesAdapter.MyViewHolder holder, final int position) {
 
-            final QData movie = moviesList.get(position);
+            final AnswerData movie = moviesList.get(position);
             holder.opt1.setText(movie.getOpt1());
             holder.opt2.setText(movie.getOpt2());
             holder.opt3.setText(movie.getOpt3());
@@ -174,51 +138,16 @@ public class QuestionActivity extends AppCompatActivity {
                 img_opt2 = view.findViewById(R.id.img_opt2);
                 img_opt3 = view.findViewById(R.id.img_opt3);
                 img_opt4 = view.findViewById(R.id.img_opt4);
+
             }
         }
     }
-
-    private void updateTable(String id,String opt) {
-
-        if (networkInfo == null) {
-            Toast.makeText(getApplicationContext(), "no network connection", Toast.LENGTH_SHORT).show();
-        } else {
-
-            JsonArrayRequest request = new JsonArrayRequest(url + "qopt=" + opt + "&qid=" + id,
-                    new Response.Listener<JSONArray>() {
-                        @Override
-                        public void onResponse(JSONArray response) {
-
-                            for (int i = 0; i < response.length(); i++) {
-                                try {
-                                    JSONObject obj = response.getJSONObject(i);
-
-                                    Toast.makeText(QuestionActivity.this,  obj.getString("staus"), Toast.LENGTH_SHORT).show();
-
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                adapter2.notifyDataSetChanged();
-                            }
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                }
-            });
-            AppController.getInstance().addToRequestQueue(request);
-
-        }
-    }
-
-    public static class QData {
+    public static class AnswerData {
         public  String opt1,opt2,opt3,opt4;
-        public QData(){
+        public AnswerData(){
 
         }
-        public QData(String opt1,String opt2,String opt3,String opt4){
+        public AnswerData(String opt1,String opt2,String opt3,String opt4){
 
         }
 
@@ -254,4 +183,76 @@ public class QuestionActivity extends AppCompatActivity {
             this.opt4 = opt4;
         }
     }
+    public void viewQuestions() {
+
+        if (networkInfo == null) {
+            Toast.makeText(getApplicationContext(), "no network connection", Toast.LENGTH_SHORT).show();
+        } else {
+
+            JsonArrayRequest request = new JsonArrayRequest(url2,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            AList.clear();
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+                                    JSONObject obj = response.getJSONObject(i);
+                                    AnswerData AnswerData = new AnswerData();
+                                    AnswerData.setOpt1(obj.getString("opt1"));
+                                    AnswerData.setOpt2(obj.getString("opt2"));
+                                    AnswerData.setOpt3(obj.getString("opt3"));
+                                    AnswerData.setOpt4(obj.getString("opt4"));
+                                    AList.add(AnswerData);
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                adapter2.notifyDataSetChanged();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+            AppController.getInstance().addToRequestQueue(request);
+
+        }
+    }
+    private void updateTable(String id,String opt) {
+
+        if (networkInfo == null) {
+            Toast.makeText(getApplicationContext(), "no network connection", Toast.LENGTH_SHORT).show();
+        } else {
+
+            JsonArrayRequest request = new JsonArrayRequest(url + "aopt=" + opt + "&aid=" + id,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+
+                            for (int i = 0; i < response.length(); i++) {
+                                try {
+                                    JSONObject obj = response.getJSONObject(i);
+
+                                    Toast.makeText(AnswerActivity.this,  obj.getString("staus"), Toast.LENGTH_SHORT).show();
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                adapter2.notifyDataSetChanged();
+                            }
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+            AppController.getInstance().addToRequestQueue(request);
+
+        }
+    }
+
 }
