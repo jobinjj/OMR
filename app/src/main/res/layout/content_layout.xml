@@ -24,6 +24,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/divider_inner1">
+
+                <ImageView
+                    android:id="@+id/img_a"
+                    android:layout_width="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/border"
+                    android:layout_margin="20dp"/>
                 <TextView
                     android:id="@+id/opt1"
                     android:layout_width="wrap_content"
@@ -33,19 +41,20 @@
                     android:textSize="19sp"
                     android:layout_centerInParent="true"
                     android:textColor="#2D9CDB"/>
-                <ImageView
-                    android:layout_width="match_parent"
-
-                    android:layout_centerVertical="true"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/border"
-                    android:layout_margin="20dp"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/img_opt2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/divider_inner1">
+
+                <ImageView
+                    android:id="@+id/img_b"
+                    android:layout_width="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/border"
+                    android:layout_margin="20dp"/>
                 <TextView
                     android:id="@+id/opt2"
                     android:layout_width="wrap_content"
@@ -55,13 +64,6 @@
                     android:textStyle="bold"
                     android:layout_centerInParent="true"
                     android:textColor="#2D9CDB"/>
-                <ImageView
-
-                    android:layout_width="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/border"
-                    android:layout_margin="20dp"/>
 
             </RelativeLayout>
 
@@ -80,6 +82,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toLeftOf="@+id/divider_inner2">
+
+                <ImageView
+                    android:id="@+id/img_c"
+                    android:layout_width="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/border"/>
                 <TextView
                     android:id="@+id/opt3"
                     android:layout_width="wrap_content"
@@ -89,19 +99,20 @@
                     android:textStyle="bold"
                     android:layout_centerInParent="true"
                     android:textColor="#2D9CDB"/>
-                <ImageView
-
-                    android:layout_width="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/border"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/img_opt4"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@+id/divider_inner2">
+
+                <ImageView
+                    android:id="@+id/img_d"
+                    android:layout_width="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/border"/>
                 <TextView
                     android:id="@+id/opt4"
                     android:layout_width="wrap_content"
@@ -111,13 +122,6 @@
                     android:textStyle="bold"
                     android:layout_centerInParent="true"
                     android:textColor="#2D9CDB"/>
-                <ImageView
-
-                    android:layout_width="match_parent"
-                    android:layout_centerVertical="true"
-                    android:layout_height="match_parent"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/border"/>
             </RelativeLayout>
 
 

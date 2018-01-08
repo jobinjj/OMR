@@ -8,19 +8,17 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Button no_ques,btn_view;
     private SharedPreferences.Editor editor;
     ConnectivityManager connectivityManager;
+    ProgressBar progressBar3;
     public static ArrayList<Data> List = new ArrayList<>();
 
     public static String url = "http://techpayyans.000webhostapp.com/omr/question.php?";
@@ -51,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         ed_no = (EditText) findViewById(R.id.ed_no);
+        progressBar3 = (ProgressBar) findViewById(R.id.progressBar3);
         ed_pm = (EditText) findViewById(R.id.ed_pm);
         ed_nm = (EditText) findViewById(R.id.ed_nm);
         rl_hide = (RelativeLayout)findViewById(R.id.rl_hide);
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 rl_hide.setVisibility(View.VISIBLE);
                 no_ques.setVisibility(View.GONE);
                 btn_view.setVisibility(View.GONE);
+                editor.remove("attend").apply();
             }
         });
         connectivityManager = (ConnectivityManager)
@@ -92,8 +93,8 @@ public class MainActivity extends AppCompatActivity {
         editor.putString("pm",positive_mark);
         editor.putString("nm",negative_mark);
         editor.apply();
-        no_ques.setVisibility(View.VISIBLE);
-        btn_view.setVisibility(View.VISIBLE);
+        progressBar3.setVisibility(View.VISIBLE);
+
         btn_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        rl_hide.setVisibility(View.GONE);
+
 
         if (pref.getString("first","true").equals("true")) {
             if (networkInfo == null) {
@@ -114,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
                         new Response.Listener<JSONArray>() {
                             @Override
                             public void onResponse(JSONArray response) {
+                                rl_hide.setVisibility(View.GONE);
+                                no_ques.setVisibility(View.VISIBLE);
+                                btn_view.setVisibility(View.VISIBLE);
+                                progressBar3.setVisibility(View.GONE);
                                 List.clear();
                                 for (int i = 0; i < response.length(); i++) {
                                     try {
@@ -124,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
                                         data.setOpt3("opt3");
                                         data.setOpt4("opt4");
                                         List.add(data);
-                                        Toast.makeText(MainActivity.this, obj.getString("status"), Toast.LENGTH_SHORT).show();
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();

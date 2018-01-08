@@ -14,18 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
-        </activity>
-        <activity android:name=".QuestionActivity" />
-        <activity android:name=".HomeActivity" />
-        <activity android:name=".AnswerActivity" />
-        <activity android:name=".FinalActivity" />
-        <activity android:name=".CountDownTest">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".QuestionActivity" />
+        <activity android:name=".AnswerActivity" />
+        <activity android:name=".FinalActivity" />
+        <activity android:name=".TestActivity">
+
         </activity>
     </application>
 

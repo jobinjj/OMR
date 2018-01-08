@@ -2,6 +2,7 @@ package sample.com.jobin.msi.omr;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,27 +33,41 @@ import java.util.List;
 public class AnswerActivity extends AppCompatActivity {
     public static String url2 = "https://techpayyans.000webhostapp.com/omr/viewanswers.php?";
     public static String url = "http://techpayyans.000webhostapp.com/omr/update.php?";
+
     public static NetworkInfo networkInfo;
     Button check;
     ConnectivityManager connectivityManager;
     public static ArrayList<AnswerData> AList = new ArrayList<>();
     private RecyclerView recyclerView;
     MoviesAdapter adapter2;
+    RelativeLayout main;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+    ProgressBar progressBar2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_answer);
 
+        pref = getApplicationContext().getSharedPreferences("Mypref",MODE_PRIVATE);
+        editor = pref.edit();
+        editor.apply();
+
+
         check = findViewById(R.id.check);
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AnswerActivity.this,FinalActivity.class);
+                truncate();
                 startActivity(intent);
+                finish();
             }
         });
+        progressBar2 = findViewById(R.id.progressBar2);
         recyclerView = (RecyclerView)findViewById(R.id.recycler2);
+        main = findViewById(R.id.main);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -62,6 +79,39 @@ public class AnswerActivity extends AppCompatActivity {
 //        Toast.makeText(getApplicationContext(), String.valueOf(AList.size()), Toast.LENGTH_SHORT).show();
 
     }
+
+    private void truncate() {
+//        if (networkInfo == null) {
+//            Toast.makeText(getApplicationContext(), "no network connection", Toast.LENGTH_SHORT).show();
+//        } else {
+//
+//            JsonArrayRequest request = new JsonArrayRequest(url3,
+//                    new Response.Listener<JSONArray>() {
+//                        @Override
+//                        public void onResponse(JSONArray response) {
+//
+//                            for (int i = 0; i < response.length(); i++) {
+//                                try {
+//                                    JSONObject obj = response.getJSONObject(i);
+//
+//
+//                                } catch (JSONException e) {
+//                                    e.printStackTrace();
+//                                }
+//                                adapter2.notifyDataSetChanged();
+//                            }
+//                        }
+//                    }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//
+//                }
+//            });
+//            AppController.getInstance().addToRequestQueue(request);
+//
+//        }
+    }
+
     public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder> {
 
         private java.util.List<AnswerData> moviesList;
@@ -79,19 +129,27 @@ public class AnswerActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(MoviesAdapter.MyViewHolder holder, final int position) {
+        public void onBindViewHolder(final MoviesAdapter.MyViewHolder holder, final int position) {
 
             final AnswerData movie = moviesList.get(position);
-            holder.opt1.setText(movie.getOpt1());
-            holder.opt2.setText(movie.getOpt2());
-            holder.opt3.setText(movie.getOpt3());
-            holder.opt4.setText(movie.getOpt4());
+//            holder.opt1.setText(movie.getOpt1());
+//            holder.opt2.setText(movie.getOpt2());
+//            holder.opt3.setText(movie.getOpt3());
+//            holder.opt4.setText(movie.getOpt4());
 
             holder.img_opt1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     viewQuestions();
                     updateTable(String.valueOf(position + 1),"opt1");
+                    holder.img_a.setImageResource(R.drawable.fill);
+                    holder.img_b.setImageResource(R.drawable.border);
+                    holder.img_c.setImageResource(R.drawable.border);
+                    holder.img_d.setImageResource(R.drawable.border);
+                    holder.opt1.setTextColor(getResources().getColor(R.color.white));
+                    holder.opt2.setTextColor(getResources().getColor(R.color.blue));
+                    holder.opt3.setTextColor(getResources().getColor(R.color.blue));
+                    holder.opt4.setTextColor(getResources().getColor(R.color.blue));
                 }
             });
             holder.img_opt2.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +157,14 @@ public class AnswerActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     viewQuestions();
                     updateTable(String.valueOf(position + 1),"opt2");
+                    holder.img_b.setImageResource(R.drawable.fill);
+                    holder.img_a.setImageResource(R.drawable.border);
+                    holder.img_c.setImageResource(R.drawable.border);
+                    holder.img_d.setImageResource(R.drawable.border);
+                    holder.opt2.setTextColor(getResources().getColor(R.color.white));
+                    holder.opt1.setTextColor(getResources().getColor(R.color.blue));
+                    holder.opt3.setTextColor(getResources().getColor(R.color.blue));
+                    holder.opt4.setTextColor(getResources().getColor(R.color.blue));
                 }
             });
             holder.img_opt3.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +172,14 @@ public class AnswerActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     viewQuestions();
                     updateTable(String.valueOf(position + 1),"opt3");
+                    holder.img_c.setImageResource(R.drawable.fill);
+                    holder.img_a.setImageResource(R.drawable.border);
+                    holder.img_b.setImageResource(R.drawable.border);
+                    holder.img_d.setImageResource(R.drawable.border);
+                    holder.opt3.setTextColor(getResources().getColor(R.color.white));
+                    holder.opt1.setTextColor(getResources().getColor(R.color.blue));
+                    holder.opt2.setTextColor(getResources().getColor(R.color.blue));
+                    holder.opt4.setTextColor(getResources().getColor(R.color.blue));
                 }
             });
             holder.img_opt4.setOnClickListener(new View.OnClickListener() {
@@ -113,6 +187,14 @@ public class AnswerActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     viewQuestions();
                     updateTable(String.valueOf(position + 1),"opt4");
+                    holder.img_d.setImageResource(R.drawable.fill);
+                    holder.img_a.setImageResource(R.drawable.border);
+                    holder.img_b.setImageResource(R.drawable.border);
+                    holder.img_c.setImageResource(R.drawable.border);
+                    holder.opt4.setTextColor(getResources().getColor(R.color.white));
+                    holder.opt1.setTextColor(getResources().getColor(R.color.blue));
+                    holder.opt2.setTextColor(getResources().getColor(R.color.blue));
+                    holder.opt3.setTextColor(getResources().getColor(R.color.blue));
                 }
             });
 
@@ -126,6 +208,7 @@ public class AnswerActivity extends AppCompatActivity {
         public class MyViewHolder extends RecyclerView.ViewHolder {
             private TextView opt1,opt2,opt3,opt4;
             private RelativeLayout img_opt1,img_opt2,img_opt3,img_opt4;
+            private ImageView img_a,img_b,img_c,img_d;
 
 
             public MyViewHolder(View view) {
@@ -138,12 +221,16 @@ public class AnswerActivity extends AppCompatActivity {
                 img_opt2 = view.findViewById(R.id.img_opt2);
                 img_opt3 = view.findViewById(R.id.img_opt3);
                 img_opt4 = view.findViewById(R.id.img_opt4);
-
+                img_a = view.findViewById(R.id.img_a);
+                img_b = view.findViewById(R.id.img_b);
+                img_c = view.findViewById(R.id.img_c);
+                img_d = view.findViewById(R.id.img_d);
             }
         }
     }
     public static class AnswerData {
         public  String opt1,opt2,opt3,opt4;
+
         public AnswerData(){
 
         }
@@ -193,8 +280,10 @@ public class AnswerActivity extends AppCompatActivity {
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
+                            main.setVisibility(View.VISIBLE);
+                            progressBar2.setVisibility(View.GONE);
                             AList.clear();
-                            for (int i = 0; i < response.length(); i++) {
+                            for (int i = 0; i < pref.getInt("attend",0); i++) {
                                 try {
                                     JSONObject obj = response.getJSONObject(i);
                                     AnswerData AnswerData = new AnswerData();
@@ -207,7 +296,7 @@ public class AnswerActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                adapter2.notifyDataSetChanged();
+
                             }
                         }
                     }, new Response.ErrorListener() {
@@ -241,7 +330,7 @@ public class AnswerActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                adapter2.notifyDataSetChanged();
+
                             }
                         }
                     }, new Response.ErrorListener() {

@@ -28,7 +28,18 @@
         android:visibility="gone"
         android:id="@+id/rl_hide"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="500dp">
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBar3"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/submit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="47dp" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,7 +65,8 @@
             android:layout_marginRight="30dp"
             android:layout_below="@+id/ed_pm"
             android:hint="enter negative mark"
-            android:id="@+id/ed_nm" />
+            android:id="@+id/ed_nm"
+            android:inputType="text"/>
 
         <Button
             android:id="@+id/submit"

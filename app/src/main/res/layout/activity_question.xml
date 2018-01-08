@@ -5,6 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="sample.com.jobin.msi.omr.QuestionActivity">
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+    <TextView
+        android:id="@+id/txt_noq_notset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set the number of questions"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
     <Button
         android:id="@+id/check"
@@ -23,6 +45,18 @@
         android:text="Select the questions"
         style="@style/Base.TextAppearance.AppCompat.Title"
         android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/txt"
+        style="@style/Base.TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/title"
+        android:layout_alignBottom="@+id/title"
+        android:layout_toEndOf="@+id/title"
+        android:layout_toRightOf="@+id/title"
+        android:text="00 : 00" />
     <RelativeLayout
         android:id="@+id/under_line"
         android:layout_below="@+id/title"
@@ -32,9 +66,14 @@
         android:background="#5a000000"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler"
+        android:background="#fff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/under_line">
 
     </android.support.v7.widget.RecyclerView>
+
+
+
+    </RelativeLayout>
 </RelativeLayout>

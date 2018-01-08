@@ -28,6 +28,8 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp" />
+
+
 </RelativeLayout>
 
     <RelativeLayout
@@ -36,7 +38,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rl_progress">
-
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="13dp"
+            android:text="back" />
         <TextView
             android:id="@+id/tm"
             style="@style/Base.TextAppearance.AppCompat.Title"
@@ -50,18 +62,85 @@
             android:text="4" />
 
         <TextView
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="16dp"
+            android:layout_toLeftOf="@+id/divider"
+            android:layout_toStartOf="@+id/divider"
+            android:text="Attended :"
+            android:id="@+id/textView3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView3"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignLeft="@+id/tq"
+            android:layout_alignStart="@+id/tq"
+            android:text="10"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:id="@+id/txt_attend" />
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="16dp"
+            android:layout_toLeftOf="@+id/divider"
+            android:layout_toStartOf="@+id/divider"
+            android:text="Correct :"
+            android:id="@+id/textView4" />
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="16dp"
+            android:layout_toLeftOf="@+id/divider"
+            android:layout_toStartOf="@+id/divider"
+            android:text="wrong :"
+            android:id="@+id/textView6" />
+
+        <TextView
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:id="@+id/txt_wrong"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView6"
+            android:layout_alignBottom="@+id/textView6"
+            android:layout_alignLeft="@+id/txt_attend"
+            android:layout_alignStart="@+id/txt_attend"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/txt_correct"
+            style="@style/Base.TextAppearance.AppCompat.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView4"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_alignLeft="@+id/txt_attend"
+            android:layout_alignStart="@+id/txt_attend"
+            android:layout_marginLeft="5dp"
+            android:text="5" />
+
+        <TextView
             android:id="@+id/textView2"
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_tq"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="16dp"
             android:layout_toLeftOf="@+id/divider"
             android:layout_toStartOf="@+id/divider"
             android:text="Total Marks :" />
 
         <TextView
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="75dp"
             android:id="@+id/txt_tq"
             style="@style/Base.TextAppearance.AppCompat.Title"
             android:layout_width="wrap_content"
